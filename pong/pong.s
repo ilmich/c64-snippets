@@ -70,13 +70,14 @@ draw_board .(
                 ldx #40
                 lda #$a0
     loop:
-                sta char_addr + (40*5) -1,x
+                sta char_addr + (40*3) -1,x
                 sta char_addr + (40*24) -1,x
                 dex
                 bne loop
 
                 ; draw middle line
                 lda #$61
+                sta char_addr + (40*4) + 19
                 sta char_addr + (40*6) + 19
                 sta char_addr + (40*8) + 19
                 sta char_addr + (40*10) + 19
@@ -219,19 +220,121 @@ move_down_2 .(
     end
                 rts
 .)
+draw_scores_1.(
+            // score
+            lda score_1
+            lsr
+            lsr
+            lsr
+            lsr
+            asl
+            tax
+            
+            // first number 
+            ldy #00
+            lda low_res_num_1,x
+            sta char_addr,y
+            lda low_res_num_2,x
+            sta char_addr+40,y
+            lda low_res_num_3,x
+            sta char_addr+80,y
+            inx
+            iny
+            lda low_res_num_1,x
+            sta char_addr,y
+            lda low_res_num_2,x
+            sta char_addr+40,y
+            lda low_res_num_3,x
+            sta char_addr+80,y
+            
+            lda score_1
+            and #$0f
+            asl
+            tax
+            // second number 
+            ldy #00
+            lda low_res_num_1,x
+            sta char_addr + 3,y
+            lda low_res_num_2,x
+            sta char_addr + 3 +40,y
+            lda low_res_num_3,x
+            sta char_addr + 3 + 80,y
+            inx
+            iny
+            lda low_res_num_1,x
+            sta char_addr + 3,y
+            lda low_res_num_2,x
+            sta char_addr + 3 +40,y
+            lda low_res_num_3,x
+            sta char_addr +3 +80,y
+            
+            rts
+.)
+
+draw_scores_2.(
+            // score
+            lda score_2
+            lsr
+            lsr
+            lsr
+            lsr
+            asl
+            tax
+            // first number 
+            ldy #00
+            lda low_res_num_1,x
+            sta char_addr + 35,y
+            lda low_res_num_2,x
+            sta char_addr + 35 + 40,y
+            lda low_res_num_3,x
+            sta char_addr + 35 + 80,y
+            inx
+            iny
+            lda low_res_num_1,x
+            sta char_addr + 35,y
+            lda low_res_num_2,x
+            sta char_addr + 35 + 40,y
+            lda low_res_num_3,x
+            sta char_addr + 35 + 80,y
+            
+            lda score_2
+            and #$0f
+            asl
+            tax
+            // second number 
+            ldy #00
+            lda low_res_num_1,x
+            sta char_addr + 38,y
+            lda low_res_num_2,x
+            sta char_addr + 38 +40,y
+            lda low_res_num_3,x
+            sta char_addr + 38 + 80,y
+            inx
+            iny
+            lda low_res_num_1,x
+            sta char_addr + 38,y
+            lda low_res_num_2,x
+            sta char_addr + 38 +40,y
+            lda low_res_num_3,x
+            sta char_addr + 38 +80,y
+            
+            rts
+.)
 
 init:
             lda #$00
             sta $d020
-            sta $d021
-            sta score_1
+            sta $d021            
+            sta score_1            
             sta score_2
             jsr clear_scr
             jsr init_sprite
-            jsr draw_board
+            jsr draw_board            
             jsr setup_irq
 loop:       lda #$00
             sta sync
+            jsr draw_scores_1
+            jsr draw_scores_2
 wait:
             lda sync
             beq wait

@@ -96,56 +96,9 @@ scr_tbl_hi
             .byte >char_addr+40 * 22
             .byte >char_addr+40 * 23
             .byte >char_addr+40 * 24
-solid_table
-            .byte $00,$00,$00,$00 ; 0000
-            .byte $00,$00,$00,$a0 ; 0001
-            .byte $00,$00,$a0,$00 ; 0010
-            .byte $00,$00,$a0,$A0 ; 0011
-            .byte $00,$a0,$00,$00 ; 0100
-            .byte $00,$a0,$00,$a0 ; 0101
-            .byte $00,$a0,$a0,$00 ; 0110
-            .byte $00,$a0,$a0,$a0 ; 0111
-            .byte $a0,$00,$00,$00 ; 1000            
-            .byte $a0,$00,$00,$a0 ; 1001
-            .byte $a0,$00,$a0,$00 ; 1010
-            .byte $a0,$00,$a0,$A0 ; 1011
-            .byte $a0,$a0,$00,$00 ; 1100
-            .byte $a0,$a0,$00,$a0 ; 1101
-            .byte $a0,$a0,$a0,$00 ; 1110
-            .byte $a0,$a0,$a0,$a0 ; 1111
-char_0
-            .byte %1111
-            .byte %1001
-            .byte %1001
-            .byte %1001
-            .byte %1111
-char_1
-            .byte %0110
-            .byte %1110
-            .byte %0110
-            .byte %0110
-            .byte %1111
-char_2
-            .byte %1111
-            .byte %0011
-            .byte %1111
-            .byte %1100
-            .byte %1111
-char_3
-            .byte %1111
-            .byte %0011
-            .byte %1111
-            .byte %0011
-            .byte %1111
-char_4
-            .byte %0111
-            .byte %1011
-            .byte %1111
-            .byte %0011
-            .byte %0011
-char_5
-            .byte %1111
-            .byte %1100
-            .byte %1111
-            .byte %0011
-            .byte %1111
+low_res_num_1
+            .byte $EC, $FB, $FE, $20, $E2, $FB, $E2, $FB, $61, $E1, $EC, $E2, $61, $20, $E2, $FB, $EC, $FB, $EC, $FB
+low_res_num_2
+            .byte $61, $E1, $E1, $20, $EC, $E2, $20, $FB, $E2, $FB, $E2, $FB, $EC, $FB, $20, $E1, $EC, $FB, $E2, $FB
+low_res_num_3
+            .byte $E2, $E2, $E2, $7E, $E2, $E2, $E2, $E2, $20, $7C, $E2, $E2, $E2, $E2, $20, $7C, $E2, $E2, $20, $7C
