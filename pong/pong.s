@@ -119,11 +119,10 @@ irq.(
                 jmp $ea31        ; return to kernel interrupt routine
 .)
 move_down_1 .(
-                ldx sprite1_y
-                inx
-                inx
-
-                txa
+                lda sprite1_y
+                clc
+                adc #04
+                tax
                 sbc #$32
                 lsr
                 lsr
@@ -146,11 +145,10 @@ move_down_1 .(
                 rts
 .)
 move_up_1 .(
-                ldx sprite1_y
-                dex
-                dex
-
-                txa
+                lda sprite1_y
+                sec
+                sbc #04
+                tax
                 sbc #$32
                 lsr
                 lsr
@@ -172,11 +170,10 @@ move_up_1 .(
 .)
 
 move_up_2 .(
-                ldx sprite2_y
-                dex
-                dex
-
-                txa
+                lda sprite2_y
+                sec
+                sbc #04
+                tax
                 sbc #$32
                 lsr
                 lsr
@@ -197,11 +194,10 @@ move_up_2 .(
                 rts
 .)
 move_down_2 .(
-                ldx sprite2_y
-                inx
-                inx
-
-                txa
+                lda sprite2_y
+                clc
+                adc #04
+                tax                
                 sbc #$32
                 lsr
                 lsr
