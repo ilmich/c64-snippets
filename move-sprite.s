@@ -120,22 +120,22 @@ joy_2:
                 lda $dc00
                 ldx #$00
                 ldy #$00                
-    joy_down
-                cmp #125                ; down
-                bne joy_up
-                ldx #$03 
     joy_up
-                cmp #126                ; up
-                bne joy_left
-                ldx #$Fd                         
+                lsr                     ;up
+                bcs joy_down
+                ldx #$FE
+    joy_down
+                lsr                     ;down
+                bcs joy_left
+                ldx #$02                         
     joy_left
-                cmp #123                ; left                
-                bne joy_right                
-                ldy #$Fd
+                lsr                     ;left                
+                bcs joy_right                
+                ldy #$FE
     joy_right
-                cmp #119                ; right
-                bne end 
-                ldy #$03       
+                lsr                     ;right
+                bcs end 
+                ldy #$02       
     end
                 stx ship_y_inc                
                 sty ship_x_inc
